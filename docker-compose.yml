@@ -1,0 +1,17 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./examcell-pdf  # Replace with the path to your Vite + React project
+    ports:
+      - "3000:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  backend:
+    build:
+      context: ./website-to-pdf  # Replace with the path to your Express API project
+    ports:
+      - "3001:3001"  # Adjust the port if your Express API runs on a different port
+    depends_on:
+      - frontend
